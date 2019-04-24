@@ -13,6 +13,6 @@ var configureStore = createStore(
     rootReducer,
     initialState,
     applyMiddleware(thunk)
-  );
+);
 
 export default configureStore;
