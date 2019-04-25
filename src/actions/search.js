@@ -9,20 +9,11 @@ var handleVideoSearch = (q) => {
   return _.debounce((dispatch) => {
 
     searchYouTube({ key: YOUTUBE_API_KEY, query: q }, (videos) => {
-      dispatch(changeVideo(videos[0]));
       dispatch(changeVideoList(videos));
+      dispatch(changeVideo(videos[0]));
     });
-  }, 1000);
+  }, 200);
 };
 
 
 export default handleVideoSearch;
-
-
-
-// return (dispatch) => {
-//     searchYouTube({key: YOUTUBE_API_KEY, query: q, max: 5}, (videos) => {
-//       dispatch(changeVideoList(videos));
-//       dispatch(changeVideo(videos[0]));
-//     });
-//   } //finish dispatch

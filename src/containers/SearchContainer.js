@@ -3,15 +3,12 @@ import Search from './../components/Search.js';
 import handleVideoSearch from '../actions/search.js';
 
 
-function mapStateToProps(state) {
-  return {search: state.Search}; //return created object
-}
-
-const mapDispatchToProps = dispatch => ({ handleSearchInputChange: (q) => {dispatch(handleVideoSearch(q))}})
-
+const mapDispatchToProps = dispatch => {
+  return {handleSearchInputChange: (q) => dispatch(handleVideoSearch(q))};
+};
 
 var SearchContainer = connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps,
   )(Search);
 
