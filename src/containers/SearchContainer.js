@@ -1,26 +1,26 @@
 import { connect } from 'react-redux';
 import Search from './../components/Search.js';
-import handleSearchChange from '../actions/search.js';
-import thunk from 'redux-thunk';
+import handleVideoSearch from '../actions/search.js';
 
-var SearchContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    applyMiddleware(thunk)
- );
 
 //TODO: define a SearchContainer component which will hook up your action
 // dispatchers with your search component props.
 //HINT: use react-redux 'connect' method to generate a container component from
 //state and dispatch mappings.
 
-function mapStateToProps( ) {
-    return {state: e.target.value}; //search
+function mapStateToProps(state) {
+  return {search: state.Search}; //return created object
 }
 
-function mapDispatchToProps() {
-  return {handleSearchChange:
-}
+const mapDispatchToProps = dispatch => {
+  return {handleSearchInputChange: event => dispatch(handleVideoSearch(event))};
+};
+  //return bindActionCreators({handleSearchChange: handleSearchChange}, dispatch) Helpdesk says this immediate line doesn't dispatch anytinng
+
+var SearchContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Search);
 
 export default SearchContainer;
 /*
@@ -50,3 +50,5 @@ export default connect(
   mapDispatchToProps
 )(TodoApp)
 */
+
+// applyMiddleware(thunk) //not needed - connect is the middleware

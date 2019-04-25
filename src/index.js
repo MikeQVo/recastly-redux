@@ -6,7 +6,7 @@ import YOUTUBE_API_KEY from './config/youtube.js';
 import { Provider } from 'react-redux';
 import configureStore from './store/store.js';
 
-const store = configureStore();
+const store = configureStore;
 
 ReactDOM.render(
   <Provider store={store}>

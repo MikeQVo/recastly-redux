@@ -5,16 +5,37 @@ import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 var handleVideoSearch = (q) => {
+  return (dispatch) => {
+    searchYouTube({key: YOUTUBE_API_KEY, query: q, max: 5}, (videos) => {
+      dispatch(changeVideoList(videos));
+      dispatch(changeVideo(videos[0]));
+    });
+  } //finish dispatch
+};
 
+export default handleVideoSearch;
   //TODO:  Write an asynchronous action to handle a video search!
-
-  return () => {
-
+/* this code works
+  return (q) => {
+    searchYouTube({q: q, key: YOUTUBE_API_KEY})
     //onchange -- have a function to handle onchange
     //pull something out of Store to handle video
   }
-};
-export default handleVideoSearch;
+*/
+/*
+function incrementIfOdd(){
+  return(dispatch, getState) => {
+    const { counter } = getState();
+
+    if(counter % 2 === 0) {
+      return;
+    }
+
+    dispatch(increment());
+  };
+}
+*/
+
 /*
 var searchYouTube = ({key, query, max = 5}, callback) => {
   $.get('https://www.googleapis.com/youtube/v3/search', {
@@ -37,44 +58,3 @@ var searchYouTube = ({key, query, max = 5}, callback) => {
     });
 };
 */
-/*
-const mapDispatchToProps = dispatch => {
-  return {
-    var options = {
-      key: YOUTUBE_API_KEY,
-      query: q
-    };
-
-
-
-    onAddTodo: todo => {
-      dispatch(addTodo(toto));
-    }
-  };
-};
-*/
-/*
-searchYouTube(options,(data)=>{
-      console.log(data);
-      this.setState({
-        currentVideo: data.items[0],
-        videoList: data.items
-      });
-    });
-*/
-
-/*     return (dispatch) => {
-        setTimeout(() => {
-            // This function is able to dispatch other action creators
-            dispatch(itemsHasErrored(true));
-        }, 5000);
-*/
-/*
-var changeVideoList = (videos) => ({
-  //TODO:  Return some action object to change the list of videos in VideoList.
-  type: "CHANGE_VIDEO_LIST",
-  videos: videos
-});
-*/
-    //some logic here
-    //  dispatch(changeVideo(videos[0]));

@@ -1,28 +1,27 @@
 import { connect } from 'react-redux';
 import VideoPlayer from '../components/VideoPlayer.js';
-import { applyMiddleware } from 'redux';
+import { applyMiddleware, bindActionCreators } from 'redux';
+import currentVideo from '../actions/currentVideo.js';
 
-var VideoPlayerContainer = () => {
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    applyMiddleware(thunk)
-  )(VideoPlayer)
-};
 
-const mapStateToProps = state => ({ : state.todos })
+const mapStateToProps = state => {return { video: state.currentVideo }};
+
+// const mapDispatchToProps = dispatch => ({ currentVideo: dispatch.currentVideo})
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    onClick: event => dispatch(currentVideo(event))
   }
 }
-
 //TODO: define a VideoPlayerContainer component which will hook up your action
 //dispatchers with your VideoPlayer component props.
 
 //Gordon's psuedocode
 //prop "video" connect to Store.currentVideo
+var VideoPlayerContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(VideoPlayer);
 
 export default VideoPlayerContainer;
 
